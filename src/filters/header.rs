@@ -49,7 +49,7 @@ pub fn header<T: FromStr + Send + 'static>(
     })
 }
 
-pub(crate) fn header2<T: Header + Send + 'static>(
+pub fn header2<T: Header + Send + 'static>(
 ) -> impl Filter<Extract = One<T>, Error = Rejection> + Copy {
     filter_fn_one(move |route| {
         tracing::trace!("header2({:?})", T::name());
@@ -97,7 +97,7 @@ where
     })
 }
 
-pub(crate) fn optional2<T>() -> impl Filter<Extract = One<Option<T>>, Error = Infallible> + Copy
+pub fn optional2<T>() -> impl Filter<Extract = One<Option<T>>, Error = Infallible> + Copy
 where
     T: Header + Send + 'static,
 {
